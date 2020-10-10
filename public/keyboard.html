@@ -1,0 +1,106 @@
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Keyboard</title>
+  <link type="text/css" href="css/style.css" rel="stylesheet" charset="utf-8">
+  <link type="text/css" href="css/greek.css" rel="stylesheet" charset="utf-8">
+</head>
+<body class="">
+<div id="app">
+  <div class="container">
+    <h1>Keyboard</h1>
+
+    <div class="row">
+      <textarea ref="out" class="textarea greek" rows="2" v-model="text"></textarea>
+    </div>
+
+    <br>
+
+    <div>
+      <button class="key" type="button" @click="key('α')">α<div class="key_name">alfa</div></button>
+      <button class="key" type="button" @click="key('β')">β<div class="key_name">beta</div></button>
+      <button class="key" type="button" @click="key('γ')">γ<div class="key_name">gamma</div></button>
+      <button class="key" type="button" @click="key('δ')">δ<div class="key_name">delta</div></button>
+      <button class="key" type="button" @click="key('ε')">ε<div class="key_name">eta</div></button>
+      <button class="key" type="button" @click="key('ζ')">ζ<div class="key_name">zeta</div></button>
+      <button class="key" type="button" @click="key('η')">η</button>
+      <button class="key" type="button" @click="key('θ')">θ</button>
+      <button class="key" type="button" @click="key('ι')">ι</button>
+      <button class="key" type="button" @click="key('κ')">κ</button>
+      <button class="key" type="button" @click="key('λ')">λ</button>
+      <button class="key" type="button" @click="key('μ')">μ</button>
+      <button class="key" type="button" @click="key('ν')">ν</button>
+      <button class="key" type="button" @click="key('ξ')">ξ</button>
+      <button class="key" type="button" @click="key('ο')">ο<div class="key_name">omicron</div></button>
+      <button class="key" type="button" @click="key('π')">π</button>
+      <button class="key" type="button" @click="key('ρ')">ρ</button>
+      <button class="key" type="button" @click="key('σ')">σ</button>
+      <button class="key" type="button" @click="key('ς')">ς</button>
+      <button class="key" type="button" @click="key('τ')">τ</button>
+      <button class="key" type="button" @click="key('υ')">υ</button>
+      <button class="key" type="button" @click="key('φ')">φ</button>
+      <button class="key" type="button" @click="key('χ')">χ</button>
+      <button class="key" type="button" @click="key('ψ')">ψ</button>
+      <button class="key" type="button" @click="key('ω')">ω<div class="key_name">omega</div></button>
+    </div>
+
+    <div>
+      <button class="key" type="button" @click="key('ά')">ά<div class="key_name">alfa</div></button>
+      <div class="key key_space"></div>
+      <div class="key key_space"></div>
+      <div class="key key_space"></div>
+      <button class="key" type="button" @click="key('έ')">έ</button>
+      <div class="key key_space"></div>
+      <button class="key" type="button" @click="key('ή')">ή</button>
+      <div class="key key_space"></div>
+      <button class="key" type="button" @click="key('ί')">ί</button>
+      <div class="key key_space"></div>
+      <div class="key key_space"></div>
+      <div class="key key_space"></div>
+      <div class="key key_space"></div>
+      <div class="key key_space"></div>
+      <button class="key" type="button" @click="key('ό')">ό</button>
+      <div class="key key_space"></div>
+      <div class="key key_space"></div>
+      <div class="key key_space"></div>
+      <div class="key key_space"></div>
+      <div class="key key_space"></div>
+      <button class="key" type="button" @click="key('ύ')">ύ</button>
+      <div class="key key_space"></div>
+      <div class="key key_space"></div>
+      <div class="key key_space"></div>
+      <button class="key" type="button" @click="key('ώ')">ώ</button>
+    </div>
+
+    <hr>
+    <p class="text">{{text}}</p>
+    <p class="text">{{translate()}}</p>
+    <hr>
+    <p>SBL fonts are made available without cost to individual scholars for non-profit use</p>
+  </div>
+</div>
+<script defer src="https://unpkg.com/vue@next"></script>
+<script type="module">
+    import { transcript } from '../src/transcript.js'
+    Vue.createApp({
+        data() {
+            return {
+                text: 'Ἐν ἀρχῇ ἦν ὁ λόγος, καὶ ὁ λόγος ἦν πρὸς τὸν θεόν, καὶ θεὸς ἦν ὁ λόγος.'
+            }
+        },
+        methods: {
+            key(key) {
+                this.$refs.out.focus()
+                document.execCommand('insertText', false, key)
+            },
+            translate() {
+                return transcript(this.text)
+            }
+        }
+    }).mount('#app')
+</script>
+</body>
+</html>
